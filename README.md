@@ -44,7 +44,8 @@ GIF created with ... LiceCap
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Describe any challenges encountered while building the app:
+
 My biggest challenges had to do with styling and I had to do some research on how to make sure the image did not separate from the card when I flipped it.
 
 ## License
