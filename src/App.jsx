@@ -56,6 +56,7 @@ function App() {
     <>
       <h1>Our Galaxy 🪐 </h1>
       <h3>Are you the next Carl Sagan? Lets find out!</h3>
+      <h5>Number of cards: 10</h5>
       <div className={`card-container ${currentDifficulty}`}>
         <div
           className={`card ${showAnswer ? 'flipped' : ''}`}
