@@ -1,0 +1,210 @@
+/* ==================== 
+   GENERAL STYLES 
+===================== */
+body {
+  background: linear-gradient(to bottom right, blue, purple);
+  font-family: 'Orbitron', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h3 {
+  font-family: Arial;
+}
+
+#root {
+  max-width: 80vw;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* ==================== 
+   CARD STYLES 
+===================== */
+.card-container {
+  width: 80vw;
+  max-width: 500px;
+  height: 50vh;
+  max-height: 200px;
+  margin: 1rem auto 4rem auto;
+  perspective: 1000px;
+  z-index: 2;
+}
+
+.card {
+  font-family: Arial;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transform-origin: center;
+  transition: transform 0.6s;
+  backface-visibility: hidden;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+/* ==================== 
+   CARD FACE STYLES 
+===================== */
+.card-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  background: linear-gradient(270deg, #09cbe9, #7e0fff);
+  color: white;
+  animation: textColor 10s ease infinite, animateGlow 9s ease infinite;
+  background-size: 200% 200%;
+  opacity: 0.7;
+}
+
+.card-face.back {
+  z-index: 1;
+  transform: rotateY(180deg);
+}
+
+.card,
+.card-face {
+  box-sizing: border-box;
+}
+
+/* ==================== 
+   TEXT STYLES 
+===================== */
+.answer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+}
+
+.answer-text {
+  z-index: 3;
+  position: relative;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+/* ==================== 
+   IMAGE STYLES 
+===================== */
+.card-image {
+  width: 20%;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  z-index: 2;
+}
+
+/* ==================== 
+   BUTTON STYLES 
+===================== */
+button {
+  z-index: 1;
+}
+
+/* ==================== 
+   ANIMATIONS 
+===================== */
+@keyframes animateGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ==================== 
+   CATEGORY STYLES 
+===================== */
+
+/* Easy */
+.card-container.easy {
+  border: 2px solid #0986f4;
+  box-shadow: 0px 0px 15px 5px rgba(6, 201, 19, 0.702);
+}
+
+.card-container.easy .card-face {
+  background: linear-gradient(270deg, #0986f4, #3fb205);
+  animation: shimmeringStars 3s ease infinite;
+}
+
+/* Medium */
+.card-container.medium {
+  border: 2px solid #003366;
+  box-shadow: 0px 0px 15px 5px rgba(3, 60, 117, 0.5);
+}
+
+.card-container.medium .card-face {
+  background: linear-gradient(
+    270deg,
+    #003366,
+    #0077b6
+  ); /* Intermediate gradient */
+}
+
+/* Hard */
+.card-container.hard {
+  border: 2px solid #ffa07a;
+  box-shadow: 0px 0px 15px 5px rgba(255, 160, 122, 0.5);
+}
+
+.card-container.hard .card-face {
+  background: linear-gradient(270deg, #ffa07a, #ff7c43);
+  animation: gentlePulse 3s ease infinite;
+}
+
+/* ==================== 
+   ADDITIONAL ANIMATIONS 
+===================== */
+
+@keyframes shimmeringStars {
+  0% {
+    background-position: 100% 50%, 0% 50%;
+  }
+  50% {
+    background-position: 0% 50%, 100% 50%;
+  }
+  100% {
+    background-position: 100% 50%, 0% 50%;
+  }
+}
+
+@keyframes gentlePulse {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    width: 90vw; /* Adjust card width for smaller screens */
+  }
+}
