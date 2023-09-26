@@ -1,4 +1,4 @@
-# Web Development Project 2 - _Name of App Here_
+# Web Development Project 2 - Our Galaxy Flashcards
 
 Submitted by: **Camila Castaneda**
 
