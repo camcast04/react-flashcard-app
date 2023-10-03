@@ -20,6 +20,21 @@ function App() {
   const [currentStreak, setCurrentStreak] = useState(0);
   const [longestStreak, setLongestStreak] = useState(0);
 
+  const skipCard = () => {
+    nextCard();
+    setShowAnswer(false);
+    setUserGuess('');
+    setFeedback('');
+  };
+
+  const shuffleAndReset = () => {
+    setCards(shuffle([...cards]));
+    setCurrentCardIndex(0);
+    setShowAnswer(false);
+    setUserGuess('');
+    setFeedback('');
+  };
+
   const shuffle = (array) => {
     let currentIndex = array.length,
       randomIndex;
@@ -104,7 +119,7 @@ function App() {
     <>
       <h1>Our Galaxy 🪐 </h1>
       <h3>Are you the next Carl Sagan? Lets find out!</h3>
-      <h5>Number of cards: {flashcards.length}</h5>
+      <h5>Number of cards: {cards.length}</h5>
       <p>
         Current Streak: {currentStreak} | Longest Streak: {longestStreak}
       </p>
@@ -121,7 +136,7 @@ function App() {
           onClick={() => setShowAnswer(!showAnswer)}
         >
           <div className="card-face front">
-            {flashcards[currentCardIndex].question}
+            {cards[currentCardIndex].question}
           </div>
           <div className="card-face back">
             <div className="answer-container">
@@ -155,7 +170,7 @@ function App() {
       <div className="feedback-container">{feedback}</div>
       <button onClick={prevCard}>Back 🔭</button>
       <button onClick={nextCard}>Next 💫</button>
-      <button onClick={nextCard}>Skip 🛸</button>
+      <button onClick={skipCard}>Skip 🛸</button>
       <button onClick={markAsMastered}>Mark as Mastered ✅</button>
     </>
   );
