@@ -14,6 +14,29 @@ import starlight from './assets/starlight.png';
 function App() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [userGuess, setUserGuess] = useState('');
+  const [feedback, setFeedback] = useState('');
+
+  const checkAnswer = () => {
+    if (
+      userGuess.toLowerCase() ===
+      flashcards[currentCardIndex].answer.toLowerCase()
+    ) {
+      setFeedback('Correct!');
+    } else {
+      setFeedback('Incorrect!');
+    }
+    setShowAnswer(true);
+  };
+
+  const prevCard = () => {
+    if (currentCardIndex > 0) {
+      setCurrentCardIndex(currentCardIndex - 1);
+    } else {
+      setCurrentCardIndex(flashcards.length - 1); // Loop back to the end
+    }
+    setShowAnswer(false);
+  };
 
   const nextCard = () => {
     if (currentCardIndex < flashcards.length - 1) {
@@ -79,6 +102,16 @@ function App() {
           </div>
         </div>
       </div>
+      <div className="user-input-container">
+        <input
+          type="text"
+          value={userGuess}
+          onChange={(e) => setUserGuess(e.target.value)}
+          placeholder="Your guess..."
+        />
+        <button onClick={checkAnswer}>Submit</button>
+      </div>
+      <button onClick={prevCard}>Back</button>
       <button onClick={nextCard}>Next 💫</button>
     </>
   );
