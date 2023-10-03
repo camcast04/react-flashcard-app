@@ -33,7 +33,7 @@ function App() {
     if (currentCardIndex > 0) {
       setCurrentCardIndex(currentCardIndex - 1);
     } else {
-      setCurrentCardIndex(flashcards.length - 1); // Loop back to the end
+      setCurrentCardIndex(flashcards.length - 1);
     }
     setShowAnswer(false);
   };
@@ -42,35 +42,30 @@ function App() {
     if (currentCardIndex < flashcards.length - 1) {
       setCurrentCardIndex(currentCardIndex + 1);
     } else {
-      setCurrentCardIndex(0); // Loop back to the start
+      setCurrentCardIndex(0);
     }
-    setShowAnswer(false); // Reset to showing the question
+    setShowAnswer(false);
+  };
+
+  const imageMapping = {
+    'The Sun': sun,
+    Mars: mars,
+    'Jupiter!': astronaut,
+    'The Milky Way': galaxy,
+    Jupiter: moon,
+    Venus: revolvearoundsun,
+    'Neil Armstrong': astronaut,
+    Saturn: saturn,
+    Pluto: pluto,
   };
 
   const getCardImage = () => {
-    switch (flashcards[currentCardIndex].answer) {
-      case 'The Sun':
-        return sun;
-      case 'Mars':
-        return mars;
-      case 'Jupiter!':
-        return astronaut;
-      case 'The Milky Way':
-        return galaxy;
-      case 'Jupiter':
-        return moon;
-      case 'Venus':
-        return revolvearoundsun;
-      case 'Neil Armstrong':
-        return astronaut;
-      case 'Saturn':
-        return saturn;
-      case 'Pluto':
-        return pluto;
-      default:
-        return starlight;
-    }
+    return imageMapping[flashcards[currentCardIndex].answer] || starlight;
   };
+
+  if (!flashcards[currentCardIndex]) {
+    return <div>Error: Card not found!</div>;
+  }
 
   const currentDifficulty =
     flashcards[currentCardIndex].difficulty.toLowerCase();
@@ -79,7 +74,7 @@ function App() {
     <>
       <h1>Our Galaxy 🪐 </h1>
       <h3>Are you the next Carl Sagan? Lets find out!</h3>
-      <h5>Number of cards: 10</h5>
+      <h5>Number of cards: {flashcards.length}</h5>
       <div className={`card-container ${currentDifficulty}`}>
         <div
           className={`card ${showAnswer ? 'flipped' : ''}`}
@@ -109,10 +104,14 @@ function App() {
           onChange={(e) => setUserGuess(e.target.value)}
           placeholder="Your guess..."
         />
-        <button onClick={checkAnswer}>Submit</button>
+        <button onClick={checkAnswer} disabled={!userGuess}>
+          Submit
+        </button>
       </div>
+      <div className="feedback-container">{feedback}</div>
       <button onClick={prevCard}>Back</button>
       <button onClick={nextCard}>Next 💫</button>
+      <button onClick={nextCard}>Skip</button>
     </>
   );
 }
