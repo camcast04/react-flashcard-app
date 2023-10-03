@@ -12,19 +12,36 @@ import pluto from './assets/pluto.png';
 import starlight from './assets/starlight.png';
 
 function App() {
+  const [cards, setCards] = useState(flashcards);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [userGuess, setUserGuess] = useState('');
   const [feedback, setFeedback] = useState('');
+  const [currentStreak, setCurrentStreak] = useState(0);
+  const [longestStreak, setLongestStreak] = useState(0);
+
+  const shuffle = (array) => {
+    let currentIndex = array.length,
+      randomIndex;
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+    return array;
+  };
 
   const checkAnswer = () => {
     if (
       userGuess.toLowerCase() ===
       flashcards[currentCardIndex].answer.toLowerCase()
     ) {
-      setFeedback('Correct!');
+      setFeedback('Correct! ✅');
     } else {
-      setFeedback('Incorrect!');
+      setFeedback('Incorrect! ⛔️');
     }
     setShowAnswer(true);
   };
