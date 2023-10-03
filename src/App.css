@@ -32,7 +32,7 @@ h5 {
   max-width: 500px;
   height: 50vh;
   max-height: 200px;
-  margin: 1rem auto 4rem auto;
+  margin: 1rem auto 2rem auto;
   perspective: 1000px;
   z-index: 2;
 }
@@ -51,6 +51,30 @@ h5 {
 
 .card.flipped {
   transform: rotateY(180deg);
+}
+
+.user-input-container {
+  width: 90%;
+  font-size: 1.2rem; /* Increase the font size */
+  width: 70%; /* Increase the width of the text box */
+  padding: 0.5rem 1rem; /* Vertical and horizontal padding */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.05
+  ); /* Slightly transparent white background */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Slight border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+  color: #fff; /* White text color */
+  margin-bottom: 1rem; /* Space beneath the textbox for separation */
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center items horizontally */
+  gap: 10px; /* space between input and button */
 }
 
 /* ==================== 
@@ -122,6 +146,7 @@ h5 {
 button {
   background-color: black;
   z-index: 1;
+  margin: 0 0.5rem;
 }
 
 /* ==================== 

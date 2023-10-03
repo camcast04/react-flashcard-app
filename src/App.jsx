@@ -105,13 +105,13 @@ function App() {
           placeholder="Your guess..."
         />
         <button onClick={checkAnswer} disabled={!userGuess}>
-          Submit
+          Submit 🚀
         </button>
       </div>
       <div className="feedback-container">{feedback}</div>
-      <button onClick={prevCard}>Back</button>
+      <button onClick={prevCard}>Back 🔭</button>
       <button onClick={nextCard}>Next 💫</button>
-      <button onClick={nextCard}>Skip</button>
+      <button onClick={nextCard}>Skip 🛸</button>
     </>
   );
 }
