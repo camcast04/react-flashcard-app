@@ -35,13 +35,19 @@ function App() {
   };
 
   const checkAnswer = () => {
-    if (
-      userGuess.toLowerCase() ===
-      flashcards[currentCardIndex].answer.toLowerCase()
-    ) {
-      setFeedback('Correct! ✅');
+    const isCorrect =
+      userGuess.trim().toLowerCase() ===
+      cards[currentCardIndex].answer.trim().toLowerCase();
+
+    if (isCorrect) {
+      setFeedback('Correct! 🎉');
+      setCurrentStreak((prevStreak) => prevStreak + 1);
+      if (currentStreak + 1 > longestStreak) {
+        setLongestStreak(currentStreak + 1);
+      }
     } else {
       setFeedback('Incorrect! ⛔️');
+      setCurrentStreak(0);
     }
     setShowAnswer(true);
   };
@@ -87,11 +93,28 @@ function App() {
   const currentDifficulty =
     flashcards[currentCardIndex].difficulty.toLowerCase();
 
+  const markAsMastered = () => {
+    setCards(cards.filter((card, index) => index !== currentCardIndex));
+    if (currentCardIndex >= cards.length - 1) {
+      setCurrentCardIndex(0);
+    }
+  };
+
   return (
     <>
       <h1>Our Galaxy 🪐 </h1>
       <h3>Are you the next Carl Sagan? Lets find out!</h3>
       <h5>Number of cards: {flashcards.length}</h5>
+      <p>
+        Current Streak: {currentStreak} | Longest Streak: {longestStreak}
+      </p>
+
+      <button
+        className="small-font"
+        onClick={() => setCards(shuffle([...cards]))}
+      >
+        Shuffle 🔄
+      </button>
       <div className={`card-container ${currentDifficulty}`}>
         <div
           className={`card ${showAnswer ? 'flipped' : ''}`}
@@ -121,7 +144,11 @@ function App() {
           onChange={(e) => setUserGuess(e.target.value)}
           placeholder="Your guess..."
         />
-        <button onClick={checkAnswer} disabled={!userGuess}>
+        <button
+          className="small-font"
+          onClick={checkAnswer}
+          disabled={!userGuess}
+        >
           Submit 🚀
         </button>
       </div>
@@ -129,6 +156,7 @@ function App() {
       <button onClick={prevCard}>Back 🔭</button>
       <button onClick={nextCard}>Next 💫</button>
       <button onClick={nextCard}>Skip 🛸</button>
+      <button onClick={markAsMastered}>Mark as Mastered ✅</button>
     </>
   );
 }

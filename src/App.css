@@ -149,6 +149,10 @@ button {
   margin: 0 0.5rem;
 }
 
+.small-font {
+  font-size: 0.8em; /* Adjust this value to your liking */
+}
+
 /* ==================== 
    ANIMATIONS 
 ===================== */
